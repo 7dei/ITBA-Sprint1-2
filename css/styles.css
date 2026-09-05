@@ -40,6 +40,13 @@ ul {
     list-style: none;
 }
 
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--cream);
@@ -90,9 +97,25 @@ body {
 }
 
 .header__cart {
-    font-size: 1.2rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
     color: var(--cream);
+    transition: color 0.3s ease;
+}
+
+.header__cart:hover {
+    color: var(--white);
+}
+
+.header__cart svg {
+    width: 24px;
+    height: 24px;
+}
+
+.cart-counter {
+    font-weight: bold;
+    font-size: 0.95rem;
 }
 
 /* Main Content */
