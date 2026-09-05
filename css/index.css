@@ -1,43 +1,10 @@
 /* =========================================
-   1. HERO (Ajuste de espacios y sillón)
+   1. HERO Y BOTÓN (Global)
    ========================================= */
-.hero {
-    display: flex;
-    flex-direction: column;
-    max-width: 1400px;
-    margin: 0 auto;
-    min-height: calc(100vh - 90px);
-    align-items: center;
-    /* Reducimos el padding superior para acercarlo al header */
-    padding: 2rem var(--spacing-md);
-}
-
-.hero__content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-}
-
-.hero__content h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    color: var(--primary);
-    margin: 0;
-}
-
-.hero__content p {
-    font-size: 1.2rem;
-    max-width: 45ch;
-    color: var(--dark);
-}
-
-/* RECUPERAMOS EL BOTÓN */
+/* Aseguramos que el botón exista fuera de las reglas de celular/PC */
 .btn--hero {
     background-color: var(--primary);
-    color: var(--white) !important; /* Fuerza el color blanco */
+    color: var(--white) !important;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: bold;
@@ -49,11 +16,42 @@
     display: inline-block;
     margin-top: 1rem;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    border: none;
 }
 
 .btn--hero:hover {
     background-color: var(--primary-dark);
     transform: translateY(-3px);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    width: 100%;
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+}
+
+.hero__content h1 {
+    font-size: 2.5rem; 
+    line-height: 1.1;
+    color: var(--primary);
+    margin: 0;
+}
+
+.hero__content p {
+    font-size: 1.1rem;
+    color: var(--dark);
 }
 
 .hero__media {
@@ -64,61 +62,65 @@
 
 .hero__img {
     width: 100%;
-    max-width: 700px;
-    filter: drop-shadow(0 20px 30px rgba(41, 33, 29, 0.15));
+    max-width: 100%; 
+    filter: drop-shadow(0 15px 20px rgba(41, 33, 29, 0.15));
 }
 
 @media (min-width: 992px) {
     .hero {
         flex-direction: row;
         justify-content: space-between;
-        padding: 0 var(--spacing-lg); /* Igualamos el espacio arriba y abajo */
+        padding: 0 var(--spacing-lg);
+        min-height: calc(100vh - 90px);
+        max-width: 1400px;
+        margin: 0 auto;
     }
-    
     .hero__content {
         width: 45%;
         align-items: flex-start;
         text-align: left;
-        margin-top: -5vh; /* Sube un poco el texto visualmente */
+        margin-top: -5vh;
     }
-    
+    .hero__content h1 {
+        font-size: 3.5rem; 
+    }
     .hero__media {
         width: 55%;
-        justify-content: center; /* Lo centramos en su columna, ya no lo pegamos a la derecha */
-        align-items: center; 
+        justify-content: center;
+        align-items: center;
     }
-    
     .hero__img {
-        max-width: 850px; /* Tamaño generoso pero equilibrado */
-        transform: translateY(-5%); /* Lo subimos apenas un poco */
+        max-width: 850px;
+        transform: translateY(-5%);
     }
 }
+
 /* =========================================
-   2. BENEFICIOS (Corregido a 3 columnas)
+   2. BENEFICIOS (Recupera elegancia y centrado)
    ========================================= */
 .beneficios-minimal {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    max-width: 1200px;
-    margin: 4rem auto 8rem auto;
-    padding: 0 var(--spacing-lg);
+    padding: 4rem 1rem;
 }
 
 @media (min-width: 768px) {
     .beneficios-minimal {
         flex-direction: row;
         justify-content: space-between;
-        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto 4rem auto;
+        padding: 0 var(--spacing-lg);
     }
 }
 
 .beneficio-item {
     flex: 1;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra perfectamente el texto y la línea marrón */
+    align-items: center; /* Centra todo perfectamente en celular y PC */
+    text-align: center;
 }
 
 .beneficio-item::before {
@@ -126,7 +128,7 @@
     display: block;
     width: 40px;
     height: 3px;
-    background-color: var(--primary);
+    background-color: var(--primary); /* Línea marrón */
     margin-bottom: 1.5rem;
     border-radius: 2px;
 }
@@ -140,58 +142,64 @@
 .beneficio-item p {
     color: var(--dark);
     font-size: 1.05rem;
+    max-width: 350px;
 }
 
 /* =========================================
-   3. DESTACADOS (Contenedor tipo isla)
+   3. DESTACADOS (PC 3 columnas / Celular 1)
    ========================================= */
 .destacados-limpios {
-    background-color: var(--white); /* Devuelve el fondo blanco diferenciador */
-    padding: 5rem 2rem;
-    margin: 0 var(--spacing-md) 6rem var(--spacing-md);
-    border-radius: 50px; /* Bordes suaves para toda la sección */
-    box-shadow: 0 10px 30px rgba(41, 33, 29, 0.05); /* Sombra elegante */
-    max-width: 1350px;
-}
-
-@media (min-width: 1350px) {
-    .destacados-limpios {
-        margin: 0 auto 6rem auto; /* Lo centra perfectamente en monitores grandes */
-    }
+    background-color: var(--white);
+    padding: 3rem 1.5rem;
+    margin: 0 1rem 4rem 1rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(41, 33, 29, 0.05);
 }
 
 .destacados-limpios h2 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: var(--primary);
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
 }
 
-/* Grilla interna de destacados */
+@media (min-width: 1024px) {
+    .destacados-limpios {
+        padding: 5rem 2rem;
+        margin: 0 auto 6rem auto;
+        max-width: 1350px;
+        border-radius: 50px;
+    }
+    .destacados-limpios h2 {
+        font-size: 3rem;
+    }
+}
+
+/* Grilla arreglada para no colapsar en PC */
 .grid-destacados {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 columna en celular */
     gap: 2rem;
     width: 100%;
 }
 
 @media (min-width: 768px) {
     .grid-destacados {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
     }
 }
 
 @media (min-width: 1024px) {
     .grid-destacados {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en PC */
         gap: 3rem;
     }
 }
 
 .grid-destacados .product-card {
-    width: 100% !important;
-    border: 1px solid var(--beige); /* Borde sutil para separar del fondo blanco */
-    border-radius: 24px; 
+    width: 100%; 
+    border: 1px solid var(--beige);
+    border-radius: 24px;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
@@ -222,38 +230,4 @@
     border-radius: 50px;
     width: 100%;
     margin-top: auto;
-}
-
-/* =========================================
-   4. HISTORIA (Recuperada como sección)
-   ========================================= */
-.historia-sutil {
-    background-color: var(--beige); /* Le da su propio espacio visual */
-    padding: 4rem 3rem;
-    margin: 0 var(--spacing-md) 6rem var(--spacing-md);
-    border-radius: 40px;
-    max-width: 900px;
-    text-align: center;
-}
-
-@media (min-width: 950px) {
-    .historia-sutil {
-        margin: 0 auto 6rem auto;
-    }
-}
-
-.historia-sutil h4 {
-    font-family: var(--font-heading);
-    color: var(--primary);
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.historia-sutil p {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: 1.6rem;
-    color: var(--primary-dark);
-    line-height: 1.7;
-    margin: 0;
 }
