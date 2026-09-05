@@ -33,33 +33,51 @@
         </button>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero__media">
-                <img src="assets/productos/sofa-patagonia.png" alt="Living decorado con muebles de madera artesanales Hermanos Jota" class="hero__img">
-            </div>
-            <div class="hero__content">
-                <h1>Muebles que se heredan, no se reemplazan</h1>
-                <p>Fabricados a mano con materiales sustentables y el mismo cuidado de siempre.</p>
-                <a href="productos.html" class="btn btn--primary">Ver Catálogo</a>
-            </div>
-        </section>
+   <main>
+    <!-- 1. HERO (Equilibrado y centrado) -->
+    <section class="hero">
+        <div class="hero__content">
+            <h1>Muebles que<br>se heredan,<br>no se<br>reemplazan</h1>
+            <p>Diseño clásico de los años 60 combinado con un compromiso real hacia el medio ambiente. Fabricados a mano para durar toda la vida.</p>
+            <a href="productos.html" class="btn btn--hero">Ver Catálogo Completo</a>
+        </div>
+        <div class="hero__media">
+            <!-- El sillón ahora se posicionará más arriba y a la derecha -->
+            <img src="assets/productos/sofa-patagonia.png" alt="Sillón Patagonia" class="hero__img">
+        </div>
+    </section>
 
-        <section class="historia">
-            <h2>Nuestra historia</h2>
-            <p class="historia__texto">Hermanos Jota nació de un oficio que creíamos olvidado:
-                 el de fabricar muebles que acompañan, no solo decoran. Cada pieza combina la 
-                 calidez de los diseños de los años 60 con materiales pensados para durar y dejar la menor huella posible.
-            </p>
-        </section>
+    <!-- 2. SUSTENTABILIDAD (Limpio, sin bordes, moderno) -->
+    <section class="beneficios-minimal">
+        <div class="beneficio-item">
+            <h3>Maderas Certificadas</h3>
+            <p>Utilizamos maderas recuperadas y de bosques gestionados responsablemente, asegurando que cada pieza respete el ciclo natural.</p>
+        </div>
+        <div class="beneficio-item">
+            <h3>Producción Artesanal</h3>
+            <p>Sin procesos masivos. Cada mueble es ensamblado a mano por ebanistas locales minimizando la huella de carbono.</p>
+        </div>
+        <div class="beneficio-item">
+            <h3>Acabados Naturales</h3>
+            <p>Protegemos la madera con aceites y ceras libres de tóxicos, cuidando la calidad del aire en tu hogar.</p>
+        </div>
+    </section>
 
-        <section class="destacados">
-            <h2>Productos Destacados</h2>
-            <div id="destacados-grid" class="grid-container">
-            </div>
-        </section>
-    </main>
+    <!-- 3. DESTACADOS (Más grandes y redondeados) -->
+    <section class="destacados-limpios">
+        <h2>Productos Destacados</h2>
+        <!-- Quitamos la caja blanca contenedora de fondo para que floten -->
+        <div id="destacados-grid" class="grid-destacados">
+            <!-- JS inyectará las tarjetas aquí -->
+        </div>
+    </section>
 
+    <!-- 4. HISTORIA (Sutil y elegante, integrada al fondo) -->
+    <section class="historia-sutil">
+        <h4>Nuestra historia</h4>
+        <p>Hermanos Jota nació de un oficio que creíamos olvidado: el de fabricar muebles que acompañan, no solo decoran. Cada pieza está pensada para dejar la menor huella posible en el planeta y la mayor en tu hogar.</p>
+    </section>
+</main>
     <footer class="footer">
         <p>&copy; 2026 Mueblería Hermanos Jota. Todos los derechos reservados.</p>
     </footer>
