@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermanos Jota - Productos</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet">
-
+    <title>Inicio | Hermanos Jota</title>
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
-
 <body>
+<body>
+    <header class="header">
+        <a href="index.html" class="header__logo">
+            <img src="assets/logo.svg" alt="Logo Hermanos Jota" class="logo-img">
+        </a>
 
-    <!-- header -->
-    <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="logo">Hermanos Jota</a>
+        <nav class="header__nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Catálogo</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
 
-            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="productos.html">Catálogo</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
-
-            <div class="header-actions">
-                <a href="#" class="cart-icon" aria-label="Carrito">
-                    🛒<span class="cart-count" id="cart-count">0</span>
-                </a>
-            </div>
-        </div>
+        <button class="header__cart" aria-label="Ver carrito">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cart-counter" class="cart-counter">0</span>
+        </button>
     </header>
 
-    <main>
+    <main class="catalogo">
+        <section class="catalogo__header">
+            <h2>Nuestro Catálogo</h2>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Buscar muebles...">
+                <button id="search-btn" class="btn btn--secondary">Buscar</button>
+            </div>
+        </section>
 
+        <section class="catalogo__productos">
+            <div id="catalogo-grid" class="grid-container">
+            </div>
+        </section>
     </main>
 
-    <!-- footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Hermanos Jota. Todos los derechos reservados.</p>
+    <footer class="footer">
+        <div class="footer__info">
+            <p>&copy; 2026 Mueblería Hermanos Jota. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-
+    <script src="js/app.js" type="module"></script>
 </body>
-
 </html>
