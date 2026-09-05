@@ -1,268 +1,310 @@
-/* ============================================
-   HERMANOS JOTA — Estilos base compartidos
-   Reset + Variables + Header/Footer + Nav
-   ============================================ */
+/* =========================================
+   1. SISTEMA DE TEMAS Y VARIABLES (UI/UX)
+   Paleta y tipografía según Manual de Marca
+   ========================================= */
+:root {
+    /* Paleta oficial (Manual de Marca) */
+    --primary:       #A0522D;  /* Siena Tostado — marca, títulos principales */
+    --primary-dark:  #713A20;  /* Variante oscura de Siena — hover, header */
+    --primary-light: #C47A6D;  /* Rosa Polvoriento — acentos suaves */
+    --sage:          #87A96B;  /* Verde Salvia — acento secundario, sustentabilidad */
+    --gold:          #D4A437;  /* Vara de Oro — detalles premium */
+    --cream:         #F5E6D3;  /* Alabastro Cálido — fondo principal, fotografía */
+    --beige:         #E6D3C3;  /* Fondos secundarios, bordes (no oficial, derivado) */
+    --dark:          #29211D;  /* Texto principal (no oficial, derivado) */
+    --white:         #FFFFFF;  /* Tarjetas, fondos de inputs */
+    --error:         #B3413B;  /* Error de formulario (no oficial, derivado) */
 
-/* ---- Reset básico ---- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+    /* Tipografía oficial */
+    --font-main:    'Inter', system-ui, sans-serif;           /* Cuerpo, UI */
+    --font-heading: 'Playfair Display', Georgia, serif;       /* Títulos editoriales */
+
+    /* Espaciados y Modelo de Cajas */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --border-radius: 8px;
+    --shadow: 0 4px 6px rgba(41, 33, 29, 0.08); /* Sombra suave adaptada al color dark */
+}
+
+/* =========================================
+   2. RESET Y MODELO DE CAJAS
+   ========================================= */
+* {
     margin: 0;
     padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-body);
-    color: var(--color-text);
-    background-color: var(--color-bg);
-    line-height: 1.5;
-}
-
-img {
-    max-width: 100%;
-    display: block;
+    box-sizing: border-box;
 }
 
 ul {
     list-style: none;
 }
 
-a {
-    color: inherit;
+body {
+    font-family: var(--font-main);
+    background-color: var(--cream);
+    color: var(--dark);
+    line-height: 1.6; /* Spec de marca: cuerpo con altura de línea 1.6 */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================================
+   3. ESTRUCTURA GLOBAL (Mobile First)
+   ========================================= */
+
+/* Control de tamaño para el Logo SVG */
+.header__logo img,
+.logo-img {
+    max-height: 90px;
+    width: auto;
+    display: block;
+}
+
+/* Header */
+.header {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.header a {
+    color: var(--cream);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header a:hover {
+    color: var(--white);
+}
+
+.header__nav ul {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.header__cart {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--cream);
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    padding: var(--spacing-lg) var(--spacing-md);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Títulos principales (h1): tratamiento editorial según manual */
+h1 {
+    font-family: var(--font-heading);
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Títulos de sección */
+h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Grillas Flexbox */
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+/* =========================================
+   4. TARJETAS DE PRODUCTO (Product Cards)
+   ========================================= */
+.product-card {
+    background-color: var(--white);
+    border: 1px solid var(--beige);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Asegura que la imagen respete los bordes redondeados */
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(41, 33, 29, 0.15);
+}
+
+.product-card__img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Recorta la imagen sin deformarla para mantener la proporción */
+    border-bottom: 1px solid var(--beige);
+}
+
+.product-card__info {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Empuja el botón hacia abajo si el título es corto */
+}
+
+.product-card__title {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark);
+}
+
+.product-card__price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--gold); /* Vara de Oro: precio como "detalle premium" */
+    margin-bottom: var(--spacing-md);
+}
+
+/* Botones y CTAs: Inter Medium, mayúsculas, espaciado 0.08em (manual) */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    transition: background-color 0.3s ease;
     text-decoration: none;
 }
 
-button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    background: none;
+.btn--primary {
+    background-color: var(--primary);
+    color: var(--white);
+    margin-top: auto; /* Empuja el botón al final de la tarjeta */
 }
 
-/* ---- Variables: colores, tipografía, escala ---- */
-:root {
-    /* Colores de marca */
-    --color-primary: #5C3A21;
-    --color-primary-dark: #3F2714;
-    --color-secondary: #C97B4A;
-
-    /* Fondos */
-    --color-bg: #F5EFE6;
-    --color-bg-card: #FFFDF9;
-
-    /* Texto */
-    --color-text: #2B1D14;
-    --color-text-muted: #7A6F63;
-
-    /* Estados */
-    --color-success: #4C7A4C;
-    --color-error: #B23A2E;
-
-    /* Bordes */
-    --color-border: #D8C9B5;
-
-    /* Tipografía */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-
-    /* Escala tipográfica (mobile-first) */
-    --fs-sm: 0.875rem;
-    --fs-base: 1rem;
-    --fs-md: 1.125rem;
-    --fs-lg: 1.5rem;
-    --fs-xl: 2rem;
-    --fs-2xl: 2.5rem;
-
-    /* Espaciado */
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
-
-    /* Layout */
-    --max-width: 1200px;
+.btn--primary:hover {
+    background-color: var(--primary-dark);
 }
 
-h1,
-h2,
-h3 {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
-    line-height: 1.2;
+.btn--secondary {
+    background-color: var(--beige);
+    color: var(--dark);
 }
 
-h1 {
-    font-size: var(--fs-xl);
+.btn--secondary:hover {
+    background-color: var(--primary-light);
+    color: var(--white);
 }
 
-h2 {
-    font-size: var(--fs-lg);
+/* =========================================
+   5. FORMULARIO DE CONTACTO
+   Validación 100% por JS — el <form> debe llevar
+   el atributo "novalidate" para desactivar la
+   validación nativa del navegador.
+   ========================================= */
+.formulario {
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-h3 {
-    font-size: var(--fs-md);
-}
-
-@media (min-width: 768px) {
-    h1 {
-        font-size: var(--fs-2xl);
-    }
-
-    h2 {
-        font-size: var(--fs-xl);
-    }
-}
-
-/* ---- Contenedor genérico ---- */
-.container {
-    max-width: var(--max-width);
-    margin-inline: auto;
-    padding-inline: var(--spacing-md);
-}
-
-/* ============================================
-   HEADER
-   ============================================ */
-.site-header {
-    background-color: var(--color-bg-card);
-    border-bottom: 1px solid var(--color-border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.site-header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: var(--spacing-sm);
-}
-
-.logo {
-    font-family: var(--font-heading);
-    font-size: var(--fs-lg);
-    font-weight: 700;
-    color: var(--color-primary);
-}
-
-/* Nav: oculto en mobile hasta abrir, visible en desktop */
-.main-nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--color-bg-card);
-    border-bottom: 1px solid var(--color-border);
-}
-
-.main-nav.nav-open {
-    display: flex;
-}
-
-.main-nav ul {
+.formulario__grupo {
+    margin-bottom: var(--spacing-md);
     display: flex;
     flex-direction: column;
 }
 
-.main-nav a {
-    display: block;
+.formulario label {
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.formulario input,
+.formulario textarea {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--beige);
+    border-radius: 4px;
+    font-family: var(--font-main);
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: var(--white);
+}
+
+/* Leyenda (texto de ayuda/error): Inter Light, ~9pt, espaciado 0.02em */
+.error-msg {
+    color: var(--error);
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    margin-top: 5px;
+    min-height: 1.2em; /* Evita que el formulario salte cuando aparece el texto */
+}
+
+.alert--success {
+    background-color: var(--sage); /* Verde Salvia como color de éxito */
+    color: var(--white);
     padding: var(--spacing-md);
-    border-top: 1px solid var(--color-border);
-    font-weight: 600;
-}
-
-.main-nav a:hover {
-    color: var(--color-secondary);
-}
-
-.nav-toggle {
-    font-size: var(--fs-lg);
-    color: var(--color-primary);
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.cart-icon {
-    position: relative;
-    font-size: var(--fs-lg);
-}
-
-.cart-count {
-    position: absolute;
-    top: -6px;
-    right: -10px;
-    background-color: var(--color-secondary);
-    color: var(--color-bg-card);
-    font-size: var(--fs-sm);
-    font-weight: 700;
-    min-width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@media (min-width: 768px) {
-    .nav-toggle {
-        display: none;
-    }
-
-    .main-nav {
-        display: flex !important;
-        position: static;
-        flex-direction: row;
-        border: none;
-        background: none;
-    }
-
-    .main-nav ul {
-        flex-direction: row;
-        gap: var(--spacing-lg);
-    }
-
-    .main-nav a {
-        border-top: none;
-        padding: 0;
-    }
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-.site-footer {
-    background-color: var(--color-primary);
-    color: var(--color-bg-card);
-    margin-top: var(--spacing-xl);
-}
-
-.site-footer .container {
-    padding-block: var(--spacing-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
     text-align: center;
+    font-weight: bold;
 }
 
-.site-footer a:hover {
-    color: var(--color-secondary);
+/* Footer */
+.footer {
+    background-color: var(--primary-dark);
+    color: var(--cream);
+    text-align: center;
+    padding: var(--spacing-md);
+    margin-top: auto;
 }
 
+/* =========================================
+   6. MEDIA QUERIES (Desktop / Tablets)
+   ========================================= */
 @media (min-width: 768px) {
-    .site-footer .container {
+    .header {
         flex-direction: row;
         justify-content: space-between;
-        text-align: left;
+    }
+
+    .grid-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Tarjetas: 2 columnas en tablet, 3 en desktop */
+    .product-card {
+        width: calc(50% - var(--spacing-lg));
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-card {
+        width: calc(33.333% - var(--spacing-lg));
     }
 }
