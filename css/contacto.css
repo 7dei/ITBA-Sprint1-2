@@ -1,0 +1,66 @@
+/* =========================================
+   5. FORMULARIO DE CONTACTO
+   ========================================= */
+.formulario {
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.formulario__grupo {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario label {
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.formulario input,
+.formulario textarea {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--beige);
+    border-radius: 4px;
+    font-family: var(--font-main);
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: var(--white);
+}
+
+.error-msg {
+    color: #d32f2f; /* Rojo estándar para errores */
+    font-size: 0.85rem;
+    margin-top: 5px;
+    min-height: 1.2em; /* Evita que el formulario salte cuando aparece el texto */
+}
+
+.alert--success {
+    background-color: #4caf50;
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-dark);
+    color: var(--cream);
+    text-align: center;
+    padding: var(--spacing-md);
+    margin-top: auto;
+}

@@ -12,47 +12,72 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contacto.css">
 
 </head>
 
 <body>
+    <header class="header">
+        <a href="index.html" class="header__logo">
+            <img src="assets/logo.svg" alt="Logo Hermanos Jota" class="logo-img">
+        </a>
 
-    <!-- header -->
-    <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="logo">Hermanos Jota</a>
+        <nav class="header__nav">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Catálogo</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
 
-            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="productos.html">Catálogo</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
-
-            <div class="header-actions">
-                <a href="#" class="cart-icon" aria-label="Carrito">
-                    🛒<span class="cart-count" id="cart-count">0</span>
-                </a>
-            </div>
-        </div>
+        <button class="header__cart" aria-label="Ver carrito">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cart-counter" class="cart-counter">0</span>
+        </button>
     </header>
 
-    <main>
+    <main class="contacto">
+        <section class="contacto__contenedor">
+            <h2>Contáctanos</h2>
+            <p>Déjanos tu mensaje y te responderemos a la brevedad.</p>
 
+            <div id="mensaje-exito" class="alert alert--success" style="display: none;">
+                ¡Tu mensaje ha sido enviado correctamente!
+            </div>
+
+            <form id="contacto-form" class="formulario" novalidate>
+                <div class="formulario__grupo">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <span class="error-msg" id="error-nombre"></span>
+                </div>
+
+                <div class="formulario__grupo">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-msg" id="error-email"></span>
+                </div>
+
+                <div class="formulario__grupo">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                    <span class="error-msg" id="error-mensaje"></span>
+                </div>
+
+                <button type="submit" class="btn btn--primary">Enviar Mensaje</button>
+            </form>
+        </section>
     </main>
 
-    <!-- footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Hermanos Jota. Todos los derechos reservados.</p>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2026 Hermanos Jota. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="js/main.js"></script>
-
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>
