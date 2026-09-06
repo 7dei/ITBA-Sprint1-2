@@ -31,27 +31,18 @@ async function iniciarApp() {
 }
 
 // CAPA DE DATOS (FETCH)
-// async function cargarDatosJSON() {
-//     try {
-//         const respuesta = await fetch('data/productos.json');
-//         if (!respuesta.ok) {
-//             throw new Error('Error en la red o archivo no encontrado');
-//         }
-//         const datos = await respuesta.json();
-//         return datos;
-//     } catch (error) {
-//         console.error("Hubo un problema al cargar el catálogo:", error);
-//         return []; // Retorna un array vacío para evitar que se rompa la app
-//     }
-// }
-
-// antes usaba fetch a productos.json, ahora los datos vienen del array productos.js (sin necesidad de servidor)
-function cargarDatosJSON() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(productos);
-        }, 300);
-    });
+async function cargarDatosJSON() {
+    try {
+        const respuesta = await fetch('data/productos.json');
+        if (!respuesta.ok) {
+            throw new Error('Error en la red o archivo no encontrado');
+        }
+        const datos = await respuesta.json();
+        return datos;
+    } catch (error) {
+        console.error("Hubo un problema al cargar el catálogo:", error);
+        return []; // Retorna un array vacío para evitar que se rompa la app
+    }
 }
 
 // CAPA DE PRESENTACIÓN (UI / DOM)
@@ -63,12 +54,12 @@ function renderizarGrilla(arrayProductos, idContenedor) {
 
     arrayProductos.forEach(producto => {
         // Evaluamos si el precio es 0 o "Desconocido" para mostrar "Consultar"
-        const precioFmt = (producto.precio === 0 || producto.precio === "Desconocido") 
-            ? "Consultar" 
+        const precioFmt = (producto.precio === 0 || producto.precio === "Desconocido")
+            ? "Consultar"
             : `$${Number(producto.precio).toLocaleString('es-AR')}`;
-        
-        const imagenUrl = producto.imagen === "Desconocido" 
-            ? "https://via.placeholder.com/300x250?text=Falta+Imagen" 
+
+        const imagenUrl = producto.imagen === "Desconocido"
+            ? "https://via.placeholder.com/300x250?text=Falta+Imagen"
             : producto.imagen;
 
         const tarjeta = document.createElement('article');
@@ -80,8 +71,7 @@ function renderizarGrilla(arrayProductos, idContenedor) {
             <div class="product-card__info">
                 <h3 class="product-card__title" style="cursor: pointer;">${producto.nombre}</h3>
                 <p class="product-card__price">${precioFmt}</p>
-                <!-- link para ir al detalle del producto desde la tarjeta del catalogo -->
-                <a href="producto.html?id=${producto.id}" class="btn btn--secondary">Ver más</a>
+                <button class="btn btn--secondary btn-ver-mas" data-id="${producto.id}">Ver más</button>
                 <button class="btn btn--primary btn-agregar" data-id="${producto.id}">
                     Añadir al Carrito
                 </button>
@@ -95,10 +85,10 @@ function renderizarGrilla(arrayProductos, idContenedor) {
         boton.addEventListener('click', manejarAgregadoCarrito);
     });
 
-    // Evento para navegar al detalle del producto usando localStorage
-    document.querySelectorAll('.product-card__img, .product-card__title').forEach(elemento => {
-        elemento.addEventListener('click', (e) => {
-            const idProducto = e.target.closest('.product-card').dataset.id;
+    // Evento para el botón de ver más
+    document.querySelectorAll('.btn-ver-mas').forEach(boton => {
+        boton.addEventListener('click', (e) => {
+            const idProducto = e.target.dataset.id;
             localStorage.setItem('productoActivo', idProducto);
             window.location.href = 'producto.html';
         });
@@ -118,12 +108,12 @@ function renderizarDetalleProducto() {
         return;
     }
 
-    const precioFmt = (producto.precio === 0 || producto.precio === "Desconocido") 
-        ? "Consultar" 
+    const precioFmt = (producto.precio === 0 || producto.precio === "Desconocido")
+        ? "Consultar"
         : `$${Number(producto.precio).toLocaleString('es-AR')}`;
-        
-    const imagenUrl = producto.imagen === "Desconocido" 
-        ? "https://via.placeholder.com/600x400?text=Falta+Imagen" 
+
+    const imagenUrl = producto.imagen === "Desconocido"
+        ? "https://via.placeholder.com/600x400?text=Falta+Imagen"
         : producto.imagen;
 
     document.getElementById('detalle-img').src = imagenUrl;
@@ -133,9 +123,9 @@ function renderizarDetalleProducto() {
     document.getElementById('detalle-desc').textContent = producto.descripcion;
 
     const listaSpecs = document.getElementById('detalle-specs');
-    listaSpecs.innerHTML = ''; 
+    listaSpecs.innerHTML = '';
     const clavesExcluidas = ['id', 'nombre', 'precio', 'descripcion', 'imagen', 'categoria'];
-    
+
     for (const [clave, valor] of Object.entries(producto)) {
         if (!clavesExcluidas.includes(clave) && valor !== "Desconocido") {
             const li = document.createElement('li');
@@ -157,20 +147,20 @@ function renderizarDetalleProducto() {
 // 1. Carrito Simulado
 function manejarAgregadoCarrito(evento) {
     // Evita que el clic en el botón active también la navegación al detalle del producto
-    evento.stopPropagation(); 
+    evento.stopPropagation();
 
     contadorCarrito++;
     document.getElementById('cart-counter').textContent = contadorCarrito;
 
     const boton = evento.target;
     const textoOriginal = boton.textContent;
-    
+
     boton.textContent = '¡Agregado!';
     boton.style.backgroundColor = 'var(--primary-dark)';
 
     setTimeout(() => {
         boton.textContent = textoOriginal;
-        boton.style.backgroundColor = ''; 
+        boton.style.backgroundColor = '';
     }, 1000);
 }
 
@@ -181,8 +171,8 @@ function inicializarBuscador() {
 
     const ejecutarFiltro = () => {
         const termino = inputBusqueda.value.toLowerCase().trim();
-        const filtrados = catalogoProductos.filter(prod => 
-            prod.nombre.toLowerCase().includes(termino) || 
+        const filtrados = catalogoProductos.filter(prod =>
+            prod.nombre.toLowerCase().includes(termino) ||
             prod.categoria.toLowerCase().includes(termino)
         );
         renderizarGrilla(filtrados, 'catalogo-grid');
@@ -234,7 +224,7 @@ function inicializarFormulario() {
 
         if (formularioValido) {
             mensajeExito.style.display = 'block';
-            formulario.reset(); 
+            formulario.reset();
 
             setTimeout(() => {
                 mensajeExito.style.display = 'none';
