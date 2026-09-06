@@ -176,23 +176,49 @@
 }
 
 /* Grilla arreglada para no colapsar en PC */
-.grid-destacados {
+/* .grid-destacados {
     display: grid;
-    grid-template-columns: 1fr; /* 1 columna en celular */
+    grid-template-columns: 1fr; ## 1 columna en celular 
     gap: 2rem;
     width: 100%;
 }
 
 @media (min-width: 768px) {
     .grid-destacados {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+        grid-template-columns: repeat(2, 1fr); ##2 columnas en tablet
     }
 }
 
 @media (min-width: 1024px) {
     .grid-destacados {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas en PC */
+        grid-template-columns: repeat(3, 1fr); ## 3 columnas en PC
         gap: 3rem;
+    }
+} */
+
+.grid-destacados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+}
+
+.grid-destacados .product-card {
+    flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+    .grid-destacados .product-card {
+        flex: 1 1 calc(50% - 1rem);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-destacados {
+        gap: 3rem;
+    }
+    .grid-destacados .product-card {
+        flex: 1 1 calc(33.333% - 2rem);
     }
 }
 

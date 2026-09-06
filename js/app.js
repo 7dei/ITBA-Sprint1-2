@@ -24,21 +24,34 @@ async function iniciarApp() {
     if (document.getElementById('contacto-form')) {
         inicializarFormulario();
     }
+    //// si estamos en la pagina de detalle, renderizamos el producto segun el id de la url
+    if (document.getElementById('detalle-container')) {
+    renderizarDetalle();
+}
 }
 
 // CAPA DE DATOS (FETCH)
-async function cargarDatosJSON() {
-    try {
-        const respuesta = await fetch('data/productos.json');
-        if (!respuesta.ok) {
-            throw new Error('Error en la red o archivo no encontrado');
-        }
-        const datos = await respuesta.json();
-        return datos;
-    } catch (error) {
-        console.error("Hubo un problema al cargar el catálogo:", error);
-        return []; // Retorna un array vacío para evitar que se rompa la app
-    }
+// async function cargarDatosJSON() {
+//     try {
+//         const respuesta = await fetch('data/productos.json');
+//         if (!respuesta.ok) {
+//             throw new Error('Error en la red o archivo no encontrado');
+//         }
+//         const datos = await respuesta.json();
+//         return datos;
+//     } catch (error) {
+//         console.error("Hubo un problema al cargar el catálogo:", error);
+//         return []; // Retorna un array vacío para evitar que se rompa la app
+//     }
+// }
+
+// antes usaba fetch a productos.json, ahora los datos vienen del array productos.js (sin necesidad de servidor)
+function cargarDatosJSON() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(productos);
+        }, 300);
+    });
 }
 
 // CAPA DE PRESENTACIÓN (UI / DOM)
@@ -60,6 +73,8 @@ function renderizarGrilla(arrayProductos, idContenedor) {
             <div class="product-card__info">
                 <h3 class="product-card__title">${producto.nombre}</h3>
                 <p class="product-card__price">${precioFmt}</p>
+                <!-- link para ir al detalle del producto desde la tarjeta del catalogo -->
+                <a href="producto.html?id=${producto.id}" class="btn btn--secondary">Ver más</a>
                 <button class="btn btn--primary btn-agregar" data-id="${producto.id}">
                     Añadir al Carrito
                 </button>
@@ -162,5 +177,37 @@ function inicializarFormulario() {
                 mensajeExito.style.display = 'none';
             }, 4000);
         }
+    });
+}
+
+//// lee el id de la url, busca el producto en el array y llena la vista de detalle
+function renderizarDetalle() {
+    const params = new URLSearchParams(window.location.search);
+    const id = Number(params.get('id'));
+    const producto = catalogoProductos.find(p => p.id === id);
+
+    if (!producto) {
+        document.getElementById('detalle-container').innerHTML = '<p>Producto no encontrado.</p>';
+        return;
+    }
+
+    const precioFmt = producto.precio === "Desconocido" ? "Consultar" : `$${Number(producto.precio).toLocaleString('es-AR')}`;
+
+    document.getElementById('detalle-img').src = producto.imagen;
+    document.getElementById('detalle-img').alt = producto.nombre;
+    document.getElementById('detalle-nombre').textContent = producto.nombre;
+    document.getElementById('detalle-precio').textContent = precioFmt;
+    document.getElementById('detalle-desc').textContent = producto.descripcion;
+
+    document.getElementById('detalle-specs').innerHTML = `
+        <li><strong>Medidas:</strong> ${producto.medidas}</li>
+        <li><strong>Materiales:</strong> ${producto.materiales}</li>
+        <li><strong>Acabado:</strong> ${producto.acabado}</li>
+        <li><strong>Peso:</strong> ${producto.peso}</li>
+    `;
+
+    document.getElementById('btn-add-cart').addEventListener('click', () => {
+        contadorCarrito++;
+        document.getElementById('cart-counter').textContent = contadorCarrito;
     });
 }
