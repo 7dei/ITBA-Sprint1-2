@@ -1,35 +1,38 @@
-/* =========================================
-   1. SISTEMA DE TEMAS Y VARIABLES (UI/UX)
-   Paleta y tipografía según Manual de Marca
-   ========================================= */
 :root {
     /* Paleta oficial (Manual de Marca) */
-    --primary:       #A0522D;  /* Siena Tostado — marca, títulos principales */
-    --primary-dark:  #713A20;  /* Variante oscura de Siena — hover, header */
-    --primary-light: #C47A6D;  /* Rosa Polvoriento — acentos suaves */
-    --sage:          #87A96B;  /* Verde Salvia — acento secundario, sustentabilidad */
-    --gold:          #D4A437;  /* Vara de Oro — detalles premium */
-    --cream:         #F5E6D3;  /* Alabastro Cálido — fondo principal, fotografía */
-    --beige:         #E6D3C3;  /* Fondos secundarios, bordes (no oficial, derivado) */
-    --dark:          #29211D;  /* Texto principal (no oficial, derivado) */
-    --white:         #FFFFFF;  /* Tarjetas, fondos de inputs */
-    --error:         #B3413B;  /* Error de formulario (no oficial, derivado) */
+    --primary: #A0522D;
+    /* Siena Tostado — marca, títulos principales */
+    --primary-dark: #713A20;
+    /* Variante oscura de Siena — hover, header */
+    --primary-light: #C47A6D;
+    /* Rosa Polvoriento — acentos suaves */
+    --sage: #87A96B;
+    /* Verde Salvia — acento secundario, sustentabilidad */
+    --gold: #D4A437;
+    /* Vara de Oro — detalles premium */
+    --cream: #F5E6D3;
+    /* Alabastro Cálido — fondo principal, fotografía */
+    --beige: #E6D3C3;
+    /* Fondos secundarios, bordes (no oficial, derivado) */
+    --dark: #29211D;
+    /* Texto principal (no oficial, derivado) */
+    --white: #FFFFFF;
+    /* Tarjetas, fondos de inputs */
+    --error: #B3413B;
+    /* Error de formulario (no oficial, derivado) */
 
-    /* Tipografía oficial */
-    --font-main:    'Inter', system-ui, sans-serif;           /* Cuerpo, UI */
-    --font-heading: 'Playfair Display', Georgia, serif;       /* Títulos editoriales */
+    /* Tipografia oficial */
+    --font-main: 'Inter', system-ui, sans-serif;
+    --font-heading: 'Playfair Display', Georgia, serif;
 
-    /* Espaciados y Modelo de Cajas */
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
     --border-radius: 8px;
-    --shadow: 0 4px 6px rgba(41, 33, 29, 0.08); /* Sombra suave adaptada al color dark */
+    --shadow: 0 4px 6px rgba(41, 33, 29, 0.08);
 }
 
-/* =========================================
-   2. RESET Y MODELO DE CAJAS
-   ========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -51,17 +54,12 @@ body {
     font-family: var(--font-main);
     background-color: var(--cream);
     color: var(--dark);
-    line-height: 1.6; /* Spec de marca: cuerpo con altura de línea 1.6 */
+    line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* =========================================
-   3. ESTRUCTURA GLOBAL (Mobile First)
-   ========================================= */
-
-/* Control de tamaño para el Logo SVG */
 .header__logo img,
 .logo-img {
     max-height: 90px;
@@ -69,7 +67,6 @@ body {
     display: block;
 }
 
-/* Header */
 .header {
     background-color: var(--primary-dark);
     color: var(--white);
@@ -118,7 +115,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Main Content */
 main {
     flex-grow: 1;
     padding: var(--spacing-lg) var(--spacing-md);
@@ -127,7 +123,6 @@ main {
     margin: 0 auto;
 }
 
-/* Títulos principales (h1): tratamiento editorial según manual */
 h1 {
     font-family: var(--font-heading);
     color: var(--primary);
@@ -136,14 +131,13 @@ h1 {
     margin-bottom: var(--spacing-md);
 }
 
-/* Títulos de sección */
-h2, h3 {
+h2,
+h3 {
     font-family: var(--font-heading);
     color: var(--primary-dark);
     margin-bottom: var(--spacing-md);
 }
 
-/* Grillas Flexbox */
 .grid-container {
     display: flex;
     flex-direction: column;
@@ -151,14 +145,11 @@ h2, h3 {
     margin-top: var(--spacing-md);
 }
 
-/* =========================================
-   4. TARJETAS DE PRODUCTO (Product Cards)
-   ========================================= */
 .product-card {
     background-color: var(--white);
     border: 1px solid var(--beige);
     border-radius: var(--border-radius);
-    overflow: hidden; /* Asegura que la imagen respete los bordes redondeados */
+    overflow: hidden;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
@@ -173,7 +164,7 @@ h2, h3 {
 .product-card__img {
     width: 100%;
     height: 250px;
-    object-fit: cover; /* Recorta la imagen sin deformarla para mantener la proporción */
+    object-fit: cover;
     border-bottom: 1px solid var(--beige);
 }
 
@@ -181,7 +172,7 @@ h2, h3 {
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Empuja el botón hacia abajo si el título es corto */
+    flex-grow: 1;
 }
 
 .product-card__title {
@@ -193,11 +184,10 @@ h2, h3 {
 .product-card__price {
     font-size: 1.3rem;
     font-weight: bold;
-    color: var(--gold); /* Vara de Oro: precio como "detalle premium" */
+    color: var(--gold);
     margin-bottom: var(--spacing-md);
 }
 
-/* Botones y CTAs: Inter Medium, mayúsculas, espaciado 0.08em (manual) */
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -215,7 +205,7 @@ h2, h3 {
 .btn--primary {
     background-color: var(--primary);
     color: var(--white);
-    margin-top: auto; /* Empuja el botón al final de la tarjeta */
+    margin-top: auto;
 }
 
 .btn--primary:hover {
@@ -232,12 +222,7 @@ h2, h3 {
     color: var(--white);
 }
 
-/* =========================================
-   5. FORMULARIO DE CONTACTO
-   Validación 100% por JS — el <form> debe llevar
-   el atributo "novalidate" para desactivar la
-   validación nativa del navegador.
-   ========================================= */
+
 .formulario {
     background-color: var(--white);
     padding: var(--spacing-lg);
@@ -276,18 +261,17 @@ h2, h3 {
     background-color: var(--white);
 }
 
-/* Leyenda (texto de ayuda/error): Inter Light, ~9pt, espaciado 0.02em */
 .error-msg {
     color: var(--error);
     font-weight: 300;
     font-size: 0.75rem;
     letter-spacing: 0.02em;
     margin-top: 5px;
-    min-height: 1.2em; /* Evita que el formulario salte cuando aparece el texto */
+    min-height: 1.2em;
 }
 
 .alert--success {
-    background-color: var(--sage); /* Verde Salvia como color de éxito */
+    background-color: var(--sage);
     color: var(--white);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
@@ -296,7 +280,6 @@ h2, h3 {
     font-weight: bold;
 }
 
-/* Footer */
 .footer {
     background-color: var(--primary-dark);
     color: var(--cream);
@@ -305,9 +288,6 @@ h2, h3 {
     margin-top: auto;
 }
 
-/* =========================================
-   6. MEDIA QUERIES (Desktop / Tablets)
-   ========================================= */
 @media (min-width: 768px) {
     .header {
         flex-direction: row;
@@ -320,7 +300,6 @@ h2, h3 {
         justify-content: center;
     }
 
-    /* Tarjetas: 2 columnas en tablet, 3 en desktop */
     .product-card {
         width: calc(50% - var(--spacing-lg));
     }

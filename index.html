@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Hermanos Jota</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
     <header class="header">
         <a href="index.html" class="header__logo">
@@ -24,7 +28,8 @@
         </nav>
 
         <button class="header__cart" aria-label="Ver carrito">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
                 <circle cx="9" cy="21" r="1"></circle>
                 <circle cx="20" cy="21" r="1"></circle>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -33,55 +38,55 @@
         </button>
     </header>
 
-   <main>
-    <!-- 1. HERO (Equilibrado y centrado) -->
-    <section class="hero">
-        <div class="hero__content">
-            <h1>Muebles que<br>se heredan,<br>no se<br>reemplazan</h1>
-            <p>Diseño clásico de los años 60 combinado con un compromiso real hacia el medio ambiente. Fabricados a mano para durar toda la vida.</p>
-            <a href="productos.html" class="btn btn--hero">Ver Catálogo Completo</a>
-        </div>
-        <div class="hero__media">
-            <!-- El sillón ahora se posicionará más arriba y a la derecha -->
-            <img src="assets/productos/sofa-patagonia.png" alt="Sillón Patagonia" class="hero__img">
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="hero__content">
+                <h1>Muebles que<br>se heredan,<br>no se<br>reemplazan</h1>
+                <p>Diseño clásico de los años 60 combinado con un compromiso real hacia el medio ambiente. Fabricados a
+                    mano para durar toda la vida.</p>
+                <a href="productos.html" class="btn btn--hero">Ver Catálogo Completo</a>
+            </div>
+            <div class="hero__media">
+                <img src="assets/productos/sofa-patagonia.png" alt="Sillón Patagonia" class="hero__img">
+            </div>
+        </section>
 
-    <!-- 2. SUSTENTABILIDAD (Limpio, sin bordes, moderno) -->
-    <section class="beneficios-minimal">
-        <div class="beneficio-item">
-            <h3>Maderas Certificadas</h3>
-            <p>Utilizamos maderas recuperadas y de bosques gestionados responsablemente, asegurando que cada pieza respete el ciclo natural.</p>
-        </div>
-        <div class="beneficio-item">
-            <h3>Producción Artesanal</h3>
-            <p>Sin procesos masivos. Cada mueble es ensamblado a mano por ebanistas locales minimizando la huella de carbono.</p>
-        </div>
-        <div class="beneficio-item">
-            <h3>Acabados Naturales</h3>
-            <p>Protegemos la madera con aceites y ceras libres de tóxicos, cuidando la calidad del aire en tu hogar.</p>
-        </div>
-    </section>
+        <section class="beneficios-minimal">
+            <div class="beneficio-item">
+                <h3>Maderas Certificadas</h3>
+                <p>Utilizamos maderas recuperadas y de bosques gestionados responsablemente, asegurando que cada pieza
+                    respete el ciclo natural.</p>
+            </div>
+            <div class="beneficio-item">
+                <h3>Producción Artesanal</h3>
+                <p>Sin procesos masivos. Cada mueble es ensamblado a mano por ebanistas locales minimizando la huella de
+                    carbono.</p>
+            </div>
+            <div class="beneficio-item">
+                <h3>Acabados Naturales</h3>
+                <p>Protegemos la madera con aceites y ceras libres de tóxicos, cuidando la calidad del aire en tu hogar.
+                </p>
+            </div>
+        </section>
 
-    <!-- 3. DESTACADOS (Más grandes y redondeados) -->
-    <section class="destacados-limpios">
-        <h2>Productos Destacados</h2>
-        <!-- Quitamos la caja blanca contenedora de fondo para que floten -->
-        <div id="destacados-grid" class="grid-destacados">
-            <!-- JS inyectará las tarjetas aquí -->
-        </div>
-    </section>
+        <section class="destacados-limpios">
+            <h2>Productos Destacados</h2>
+            <div id="destacados-grid" class="grid-destacados">
+            </div>
+        </section>
 
-    <!-- 4. HISTORIA (Sutil y elegante, integrada al fondo) -->
-    <section class="historia-sutil">
-        <h4>Nuestra historia</h4>
-        <p>Hermanos Jota nació de un oficio que creíamos olvidado: el de fabricar muebles que acompañan, no solo decoran. Cada pieza está pensada para dejar la menor huella posible en el planeta y la mayor en tu hogar.</p>
-    </section>
-</main>
+        <section class="historia-sutil">
+            <h4>Nuestra historia</h4>
+            <p>Hermanos Jota nació de un oficio que creíamos olvidado: el de fabricar muebles que acompañan, no solo
+                decoran. Cada pieza está pensada para dejar la menor huella posible en el planeta y la mayor en tu
+                hogar.</p>
+        </section>
+    </main>
     <footer class="footer">
         <p>&copy; 2026 Mueblería Hermanos Jota. Todos los derechos reservados.</p>
     </footer>
 
     <script src="js/app.js" type="module"></script>
 </body>
+
 </html>
