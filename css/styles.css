@@ -215,6 +215,7 @@ h3 {
 .btn--secondary {
     background-color: var(--beige);
     color: var(--dark);
+    margin-bottom: 8px;
 }
 
 .btn--secondary:hover {
