@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nombre": "Aparador Uspallata",
-    "precio": 0,
+    "precio": 2890000,
     "categoria": "Almacenamiento",
     "descripcion": "Aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón. Su silueta minimalista realza el veteado natural de la madera, creando una pieza que combina funcionalidad y elegancia atemporal para espacios contemporáneos.",
     "medidas": "180 × 45 × 75 cm",
@@ -16,7 +16,7 @@
   {
     "id": 2,
     "nombre": "Biblioteca Recoleta",
-    "precio": 0,
+    "precio": 1590000,
     "categoria": "Almacenamiento",
     "descripcion": "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro. Perfecta para colecciones y objetos de diseño, su diseño versátil se adapta a cualquier espacio contemporáneo con elegancia funcional.",
     "medidas": "100 × 35 × 200 cm",
@@ -30,7 +30,7 @@
   {
     "id": 3,
     "nombre": "Butaca Mendoza",
-    "precio": 0,
+    "precio": 1190000,
     "categoria": "Asientos",
     "descripcion": "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú. El respaldo curvo abraza el cuerpo y ofrece máximo confort, mientras que su diseño orgánico aporta calidez y sofisticación a cualquier ambiente contemporáneo.",
     "medidas": "80 × 75 × 85 cm",
@@ -44,7 +44,7 @@
   {
     "id": 4,
     "nombre": "Sillón Copacabana",
-    "precio": 0,
+    "precio": 2490000,
     "categoria": "Asientos",
     "descripcion": "Sillón lounge en cuero cognac con base giratoria en acero Burnt Sienna. Inspirado en la estética brasilera moderna de los 60, combina comodidad excepcional con un diseño icónico que trasciende tendencias y épocas.",
     "medidas": "90 × 85 × 95 cm",
@@ -60,7 +60,7 @@
   {
     "id": 5,
     "nombre": "Mesa de Centro Araucaria",
-    "precio": 0,
+    "precio": 1890000,
     "categoria": "Mesas",
     "descripcion": "Mesa de centro con sobre circular de mármol Patagonia y base de tres patas en madera de nogal. Su diseño minimalista se convierte en el punto focal perfecto para cualquier sala de estar contemporánea.",
     "medidas": "90 × 90 × 45 cm",
@@ -74,7 +74,7 @@
   {
     "id": 6,
     "nombre": "Mesa de Noche Aconcagua",
-    "precio": 0,
+    "precio": 449000,
     "categoria": "Dormitorio",
     "descripcion": "Mesa de noche con cajón oculto y repisa inferior en roble certificado FSC®. Su diseño limpio y funcional permite convivir con diferentes estilos de dormitorio, ofreciendo almacenamiento discreto y elegante para objetos personales.",
     "medidas": "45 × 35 × 60 cm",
@@ -89,7 +89,7 @@
   {
     "id": 7,
     "nombre": "Sofá Patagonia",
-    "precio": 0,
+    "precio": 2390000,
     "categoria": "Asientos",
     "descripcion": "Sofá de tres cuerpos tapizado en lino Warm Alabaster con patas cónicas de madera. Los cojines combinan espuma de alta resiliencia con plumón reciclado, ofreciendo comodidad duradera y sostenible para el hogar moderno.",
     "medidas": "220 × 90 × 80 cm",
@@ -105,7 +105,7 @@
   {
     "id": 8,
     "nombre": "Mesa Comedor Pampa",
-    "precio": 0,
+    "precio": 2190000,
     "categoria": "Comedor",
     "descripcion": "Mesa extensible de roble macizo con tablero biselado y sistema de apertura suave. Su diseño robusto y elegante se adapta perfectamente a reuniones íntimas o grandes celebraciones familiares.",
     "medidas": "160-240 × 90 × 75 cm",
@@ -120,7 +120,7 @@
   {
     "id": 9,
     "nombre": "Sillas Córdoba",
-    "precio": 0,
+    "precio": 649000,
     "categoria": "Comedor",
     "descripcion": "Set de cuatro sillas apilables en contrachapado moldeado de nogal y estructura tubular pintada en Sage Green. Su diseño ergonómico y materiales de calidad garantizan comodidad y durabilidad en el uso diario.",
     "medidas": "45 × 52 × 80 cm (cada una)",
@@ -136,7 +136,7 @@
   {
     "id": 10,
     "nombre": "Escritorio Costa",
-    "precio": 0,
+    "precio": 749000,
     "categoria": "Oficina",
     "descripcion": "Escritorio compacto con cajón organizado y tapa pasacables integrada en bambú laminado. Ideal para espacios de trabajo en casa, combina funcionalidad moderna con estética minimalista y sostenible.",
     "medidas": "120 × 60 × 75 cm",
@@ -152,7 +152,7 @@
   {
     "id": 11,
     "nombre": "Silla de Trabajo Belgrano",
-    "precio": 0,
+    "precio": 449000,
     "categoria": "Oficina",
     "descripcion": "Silla ergonómica regulable en altura con respaldo de malla transpirable y asiento tapizado en tejido reciclado. Diseñada para largas jornadas de trabajo con máximo confort y apoyo lumbar, ideal para oficinas en casa y espacios de coworking.",
     "medidas": "60 × 60 × 90-100 cm",

@@ -24,10 +24,10 @@ async function iniciarApp() {
     if (document.getElementById('contacto-form')) {
         inicializarFormulario();
     }
-    //// si estamos en la pagina de detalle, renderizamos el producto segun el id de la url
+
     if (document.getElementById('detalle-container')) {
-    renderizarDetalle();
-}
+        renderizarDetalleProducto();
+    }
 }
 
 // CAPA DE DATOS (FETCH)
@@ -62,16 +62,23 @@ function renderizarGrilla(arrayProductos, idContenedor) {
     contenedor.innerHTML = '';
 
     arrayProductos.forEach(producto => {
-        // Validación de datos faltantes: se creó a partir de la premisa de que el JSON puede tener campos vacíos o "Desconocido"
-        const precioFmt = producto.precio === "Desconocido" ? "Consultar" : `$${Number(producto.precio).toLocaleString('es-AR')}`;
-        const imagenUrl = producto.imagen === "Desconocido" ? "https://via.placeholder.com/300x250?text=Falta+Imagen" : producto.imagen;
+        // Evaluamos si el precio es 0 o "Desconocido" para mostrar "Consultar"
+        const precioFmt = (producto.precio === 0 || producto.precio === "Desconocido") 
+            ? "Consultar" 
+            : `$${Number(producto.precio).toLocaleString('es-AR')}`;
+        
+        const imagenUrl = producto.imagen === "Desconocido" 
+            ? "https://via.placeholder.com/300x250?text=Falta+Imagen" 
+            : producto.imagen;
 
         const tarjeta = document.createElement('article');
         tarjeta.className = 'product-card';
+        tarjeta.dataset.id = producto.id; // Guardamos el ID en el HTML de la tarjeta
+
         tarjeta.innerHTML = `
-            <img src="${imagenUrl}" alt="${producto.nombre}" class="product-card__img">
+            <img src="${imagenUrl}" alt="${producto.nombre}" class="product-card__img" style="cursor: pointer;">
             <div class="product-card__info">
-                <h3 class="product-card__title">${producto.nombre}</h3>
+                <h3 class="product-card__title" style="cursor: pointer;">${producto.nombre}</h3>
                 <p class="product-card__price">${precioFmt}</p>
                 <!-- link para ir al detalle del producto desde la tarjeta del catalogo -->
                 <a href="producto.html?id=${producto.id}" class="btn btn--secondary">Ver más</a>
@@ -83,19 +90,78 @@ function renderizarGrilla(arrayProductos, idContenedor) {
         contenedor.appendChild(tarjeta);
     });
 
+    // Evento para el botón de añadir al carrito
     document.querySelectorAll('.btn-agregar').forEach(boton => {
         boton.addEventListener('click', manejarAgregadoCarrito);
     });
+
+    // Evento para navegar al detalle del producto usando localStorage
+    document.querySelectorAll('.product-card__img, .product-card__title').forEach(elemento => {
+        elemento.addEventListener('click', (e) => {
+            const idProducto = e.target.closest('.product-card').dataset.id;
+            localStorage.setItem('productoActivo', idProducto);
+            window.location.href = 'producto.html';
+        });
+    });
+}
+
+function renderizarDetalleProducto() {
+    const contenedor = document.getElementById('detalle-container');
+    if (!contenedor) return;
+
+    // Leer el ID guardado en la memoria del navegador
+    const idGuardado = localStorage.getItem('productoActivo');
+    const producto = catalogoProductos.find(p => p.id === parseInt(idGuardado));
+
+    if (!producto) {
+        contenedor.innerHTML = '<h2>Producto no encontrado</h2><br><a href="productos.html" class="btn btn--primary">Volver al catálogo</a>';
+        return;
+    }
+
+    const precioFmt = (producto.precio === 0 || producto.precio === "Desconocido") 
+        ? "Consultar" 
+        : `$${Number(producto.precio).toLocaleString('es-AR')}`;
+        
+    const imagenUrl = producto.imagen === "Desconocido" 
+        ? "https://via.placeholder.com/600x400?text=Falta+Imagen" 
+        : producto.imagen;
+
+    document.getElementById('detalle-img').src = imagenUrl;
+    document.getElementById('detalle-img').alt = producto.nombre;
+    document.getElementById('detalle-nombre').textContent = producto.nombre;
+    document.getElementById('detalle-precio').textContent = precioFmt;
+    document.getElementById('detalle-desc').textContent = producto.descripcion;
+
+    const listaSpecs = document.getElementById('detalle-specs');
+    listaSpecs.innerHTML = ''; 
+    const clavesExcluidas = ['id', 'nombre', 'precio', 'descripcion', 'imagen', 'categoria'];
+    
+    for (const [clave, valor] of Object.entries(producto)) {
+        if (!clavesExcluidas.includes(clave) && valor !== "Desconocido") {
+            const li = document.createElement('li');
+            const tituloClave = clave.charAt(0).toUpperCase() + clave.slice(1);
+            li.innerHTML = `<strong>${tituloClave}:</strong> ${valor}`;
+            listaSpecs.appendChild(li);
+        }
+    }
+
+    // Activar botón del carrito en la vista de detalle
+    const btnAgregar = document.getElementById('btn-add-cart');
+    if (btnAgregar) {
+        btnAgregar.addEventListener('click', manejarAgregadoCarrito);
+    }
 }
 
 // LÓGICA DE NEGOCIO Y EVENTOS
 
 // 1. Carrito Simulado
 function manejarAgregadoCarrito(evento) {
+    // Evita que el clic en el botón active también la navegación al detalle del producto
+    evento.stopPropagation(); 
+
     contadorCarrito++;
     document.getElementById('cart-counter').textContent = contadorCarrito;
 
-    // Feedback visual para el usuario en el botón presionado
     const boton = evento.target;
     const textoOriginal = boton.textContent;
     
@@ -104,11 +170,11 @@ function manejarAgregadoCarrito(evento) {
 
     setTimeout(() => {
         boton.textContent = textoOriginal;
-        boton.style.backgroundColor = ''; // Vuelve al estilo CSS original
+        boton.style.backgroundColor = ''; 
     }, 1000);
 }
 
-// 2. Buscador del Catálogo (Bonus Funcional)
+// 2. Buscador del Catálogo
 function inicializarBuscador() {
     const inputBusqueda = document.getElementById('search-input');
     const btnBuscar = document.getElementById('search-btn');
@@ -138,7 +204,6 @@ function inicializarFormulario() {
         evento.preventDefault();
         let formularioValido = true;
 
-        // Validar Nombre
         const inputNombre = document.getElementById('nombre');
         const errorNombre = document.getElementById('error-nombre');
         if (inputNombre.value.trim().length < 3) {
@@ -148,7 +213,6 @@ function inicializarFormulario() {
             errorNombre.textContent = '';
         }
 
-        // Validar Email con Expresión Regular
         const inputEmail = document.getElementById('email');
         const errorEmail = document.getElementById('error-email');
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -159,7 +223,6 @@ function inicializarFormulario() {
             errorEmail.textContent = '';
         }
 
-        // Validar Mensaje
         const inputMensaje = document.getElementById('mensaje');
         const errorMensaje = document.getElementById('error-mensaje');
         if (inputMensaje.value.trim().length < 10) {
@@ -171,7 +234,7 @@ function inicializarFormulario() {
 
         if (formularioValido) {
             mensajeExito.style.display = 'block';
-            formulario.reset(); // Limpia los campos
+            formulario.reset(); 
 
             setTimeout(() => {
                 mensajeExito.style.display = 'none';
