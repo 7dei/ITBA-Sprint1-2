@@ -1,6 +1,6 @@
 .catalogo__header {
-    font-size: 2.8rem;
-    text-align: center; 
+    font-size: 2rem;
+    text-align: center;
     margin-bottom: var(--spacing-lg);
     display: flex;
     flex-direction: column;
@@ -9,6 +9,7 @@
 
 .search-bar {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: stretch;
     gap: var(--spacing-sm);
@@ -19,21 +20,21 @@
 
 #search-input {
     flex-grow: 1;
-    padding: 1rem 2rem; 
+    padding: 1rem 2rem;
     font-family: var(--font-main);
     font-size: 1.1rem;
     color: var(--dark);
-    background-color: var(--beige); 
-    border: 2px solid transparent; 
-    border-radius: 50px; 
+    background-color: var(--beige);
+    border: 2px solid transparent;
+    border-radius: 50px;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #search-input:focus {
     outline: none;
     background-color: var(--white);
-    border-color: transparent; 
-    box-shadow: 0 4px 15px rgba(41, 33, 29, 0.08); 
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(41, 33, 29, 0.08);
 }
 
 #search-btn {
@@ -44,7 +45,7 @@
 }
 
 .catalogo {
-    max-width: 1350px; 
+    max-width: 1350px;
     margin: 0 auto;
 }
 
@@ -58,4 +59,16 @@
 
 .product-card .btn {
     border-radius: 50px;
+}
+
+@media (min-width: 600px) {
+    .search-bar {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) {
+    .catalogo__header {
+        font-size: 2.8rem;
+    }
 }

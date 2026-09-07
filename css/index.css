@@ -170,27 +170,23 @@
     }
 }
 
-/* Grilla arreglada para no colapsar en PC */
 .grid-destacados {
     display: grid;
-    grid-template-columns: 1fr; /* 1 columna en celular */
+    grid-template-columns: 1fr;
     gap: 2rem;
     width: 100%;
 }
 
 @media (min-width: 768px) {
     .grid-destacados {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
     .grid-destacados {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas en PC */
+        grid-template-columns: repeat(3, 1fr);
         gap: 3rem;
-    }
-    .grid-destacados .product-card {
-        flex: 1 1 calc(33.333% - 2rem);
     }
 }
 
